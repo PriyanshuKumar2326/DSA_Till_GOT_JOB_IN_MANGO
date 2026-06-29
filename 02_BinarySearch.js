@@ -18,6 +18,8 @@ function binarySearch(target,arr){
   }
   return -1;
 }
-console.log(binarySearch(9,arr))
+// console.log(binarySearch(9,arr))
 //timeComplexity:-O(log n base 2)
-//spaceComplexity:-O(1)
+//spaceComplexity:-O(1) 
+
+console.log(Math.trunc((0+1)/2))
