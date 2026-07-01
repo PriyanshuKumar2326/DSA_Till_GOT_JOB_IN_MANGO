@@ -36,3 +36,27 @@ function addToTail(value) {
   }
   this.size++;
 }
+
+
+//Adding Node at the Index 
+
+
+function addAtIndex(index,value){
+  let newNode=new Node(value);
+
+  if(index==0){
+    this.addToHead(value);
+    return;
+  }else if(index==this.size){
+    this.addToTail(value);
+    return;
+  }else {
+    let curr=this.head;
+    for(let i=0;i<index-1;i++){
+      curr=curr.next;
+    }
+    newNode.next=curr.next;
+    curr.next=newNode;
+  }
+  this.size++;
+}
