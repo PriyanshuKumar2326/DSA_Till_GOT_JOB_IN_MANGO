@@ -29,7 +29,7 @@ function addToTail(value) {
     this.head = newNode;
   } else {
     let curr = this.head;
-    while (curr != null) {
+    while (curr.next != null) {
       curr = curr.next();
     }
     curr.next = newNode;
