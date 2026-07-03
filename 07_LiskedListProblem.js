@@ -8,4 +8,20 @@
       fast=fast.next.next;
     }
     return slow;
+  } 
+
+
+//Reverse the LinkedList 
+
+function reverse(head){
+  let prev=null;
+  let curr=head;
+  while(curr){
+    temp=curr.next;
+    curr.next=prev;
+    prev=curr;
+    curr=temp;
   }
+  head=prev;
+  return head
+}
