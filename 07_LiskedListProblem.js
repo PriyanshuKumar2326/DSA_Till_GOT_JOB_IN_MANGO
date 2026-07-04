@@ -3,7 +3,7 @@
   function middle(head){
     let slow=head;
     let fast=head;
-    while(fast !=null & fast.next!=null){
+    while(fast !=null && fast.next!=null){
       slow=slow.next;
       fast=fast.next.next;
     }
@@ -23,5 +23,25 @@ function reverse(head){
     curr=temp;
   }
   head=prev;
-  return head
+  return head;
 }
+
+//Linked List Cycle 
+// time=O(n);
+//space=O(n);
+//brute force
+function linkedCycle(head){
+  let seenNode=new set();
+  let curr=head;
+  while(curr){
+    if(seenNode.has(curr)){
+      return true
+    }
+    seenNode.add(curr);
+    curr=curr.next;
+  }
+  return false;
+}
+//time
+
+//Optimize
