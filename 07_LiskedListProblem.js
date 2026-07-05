@@ -59,7 +59,7 @@ function linkedOp(head) {
 }
 
 
-//Linked List Palindrome 
+//Linked List Palindrome by converting linkedlist into arr then check
 
 function linkedListPalindrome(head){
   let arr=[];
@@ -79,4 +79,40 @@ function linkedListPalindrome(head){
     end--;
   }
   console.log("Palindrome Linked List")
+}
+
+//Linked List Optimize 
+
+function LinkedPalin(head){
+  //Find the middle of element
+
+  let slow=fast=head;
+  while(fast!=null && fast.next!=null){
+   slow=slow.next;
+   fast=fast.next.next;
+  }
+
+  
+  //reverse the second half of list
+  let prev=null;
+  let curr=slow;
+  while(curr!=null){
+  let temp=curr.next;
+   curr.next=prev;
+   prev=curr;
+   curr=temp
+  }
+
+  //checking for plaindrome
+  let first=head;
+  let second=prev;
+
+  while(second!=null){
+    if(first.value!==second.value){
+     return false
+    }
+    first=first.next;
+    second=second.next;
+  }
+  return true;
 }
