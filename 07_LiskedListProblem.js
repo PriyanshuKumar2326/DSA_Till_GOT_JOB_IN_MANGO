@@ -44,8 +44,10 @@ function linkedCycle(head) {
 //time
 
 //Optimize
+//time:=O(n);
+//Space:=O(1);
 function linkedOp(head) {
-  let slow = (fast = head);
+  let slow = fast = head;
   while (fast != null && fast.next != null) {
     slow = slow.next;
     fast = fast.next.next;
@@ -54,4 +56,27 @@ function linkedOp(head) {
     }
   }
   return false;
+}
+
+
+//Linked List Palindrome 
+
+function linkedListPalindrome(head){
+  let arr=[];
+  let curr=head;
+  while(curr){
+    arr.push(curr.value);
+    curr=curr.next;
+  }
+  let start=0;
+  let end=arr.length-1;
+  while(start<end){
+    if(arr[start]!=arr[end]){
+      console.log("Not palindrome Linked List");
+      return;
+    }
+    start++;
+    end--;
+  }
+  console.log("Palindrome Linked List")
 }
