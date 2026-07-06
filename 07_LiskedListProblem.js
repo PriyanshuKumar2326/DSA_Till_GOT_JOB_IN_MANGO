@@ -122,20 +122,27 @@ function LinkedPalin(head){
 //Intersection of two Linked List
 //Brute force   time:=O(m*n)=O(n^2);
 // space=O(1);
+
+//Opimize time:=O(1);
 function checkedLiskedList(headA,headB){
+  let seenNode = new Set();
+
   let first=headA;
   let second=headB;
-  let seenNode = new Set();
+  //put all nodes of headA inside a Set
   while(first){
     seenNode.add(first);
     first=first.next;
   }
+
+  //Check for each element of HeadB if they are present in HeadA
   while(second){
     if(seenNode.has(second)){
       return second;
     }
     second=second.next
   }
-  return null;
 
+  return null;
+  
 }
