@@ -82,7 +82,8 @@ function linkedListPalindrome(head){
 }
 
 //Linked List Optimize 
-
+//time:=O(n);
+//space:=O(1);
 function LinkedPalin(head){
   //Find the middle of element
 
@@ -115,4 +116,26 @@ function LinkedPalin(head){
     second=second.next;
   }
   return true;
+} 
+
+
+//Intersection of two Linked List
+//Brute force   time:=O(m*n)=O(n^2);
+// space=O(1);
+function checkedLiskedList(headA,headB){
+  let first=headA;
+  let second=headB;
+  let seenNode = new Set();
+  while(first){
+    seenNode.add(first);
+    first=first.next;
+  }
+  while(second){
+    if(seenNode.has(second)){
+      return second;
+    }
+    second=second.next
+  }
+  return null;
+
 }
