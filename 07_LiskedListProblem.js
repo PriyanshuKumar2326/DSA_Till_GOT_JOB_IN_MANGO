@@ -145,4 +145,25 @@ function checkedLiskedList(headA,headB){
 
   return null;
   
+} 
+
+//Remove Linked List Element 
+//Time:=O(n);
+function ListNode(value,next){
+  this.value=value;
+  this.next=next;
+}
+function removeLinked(head,value){
+  let sentinel=new ListNode();
+  sentinel.next=head;
+  let prev=sentinel;
+  while(prev && prev.next){
+    if(prev.next.value===value){
+      prev.next=prev.next.next;
+    }else {
+       prev=prev.next;
+    }
+   
+  }
+  return sentinel.next;
 }
