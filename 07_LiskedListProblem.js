@@ -167,3 +167,24 @@ function removeLinked(head,value){
   }
   return sentinel.next;
 }
+
+//Remove nth node from end of the Linked List // Two pass solution/
+//Time complexity:=O(m+n)=O(2n)=O(n);
+//Spcae Complexity=O(1)
+function removeNthNode(head,n){
+  let sentinel=new ListNode();
+  sentinel.next=head;
+  let prev=sentinel;
+  let length=0;
+  while(head){
+    head=head.next;
+    length++; 
+  }
+ // let deletePosition=(length-n)+1;
+  let prevPosition=length-n;
+ for(let i=0;i<prevPosition;i++){
+  prev=prev.next;
+ }
+ prev.next=prev.next.next;
+ return sentinel.next;
+}
