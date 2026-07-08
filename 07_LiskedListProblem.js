@@ -188,3 +188,21 @@ function removeNthNode(head,n){
  prev.next=prev.next.next;
  return sentinel.next;
 }
+
+//One pass 
+
+function OnePass(head,n){
+  let sentinel=new ListNode();
+  sentinel.next=head;
+  let first=second=sentinel;
+  for(let i=0;i<n;i++){
+    first=first.next;
+  }
+
+  while(first && first.next){
+    second=second.next;
+    first=first.next;
+  }
+  second.next=second.next.next;
+  return sentinel.next;
+}
