@@ -221,3 +221,22 @@ function removeDuplicates(head) {
   }
   return head;
 }
+
+//Odd Even Linked List ;
+//Time:=O(n);
+//space:=O(1);
+
+function OddEvent(head){
+  if(!head || !head.next) return head
+  let odd=head;
+  let even=head.next;
+  let evenStart=even;
+  while(odd.next && even.next){
+    odd.next=odd.next.next;
+    even.next=even.next.next;
+    odd=odd.next;
+    even=even.next;
+  }
+  odd.next=evenStart;
+  return head;
+}
