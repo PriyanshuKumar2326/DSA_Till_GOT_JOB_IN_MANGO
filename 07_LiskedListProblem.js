@@ -239,4 +239,24 @@ function OddEvent(head){
   }
   odd.next=evenStart;
   return head;
+} 
+
+//Swap Nodes in Pairs 
+//time:=O(n);
+function swapNode(head){
+  let sentinel=new ListNode();
+  sentinel.next=head;
+
+  let prev=sentinel;
+  while(prev.next && prev.next.next){
+    let first=prev.next;
+    let second=first.next;
+
+    first.next=second.next;
+    second.next=first;
+    prev.next=second;
+
+    prev=first;
+  }
+  return sentinel.next
 }
