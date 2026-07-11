@@ -226,37 +226,61 @@ function removeDuplicates(head) {
 //Time:=O(n);
 //space:=O(1);
 
-function OddEvent(head){
-  if(!head || !head.next) return head
-  let odd=head;
-  let even=head.next;
-  let evenStart=even;
-  while(odd.next && even.next){
-    odd.next=odd.next.next;
-    even.next=even.next.next;
-    odd=odd.next;
-    even=even.next;
+function OddEvent(head) {
+  if (!head || !head.next) return head;
+  let odd = head;
+  let even = head.next;
+  let evenStart = even;
+  while (odd.next && even.next) {
+    odd.next = odd.next.next;
+    even.next = even.next.next;
+    odd = odd.next;
+    even = even.next;
   }
-  odd.next=evenStart;
+  odd.next = evenStart;
   return head;
-} 
+}
 
-//Swap Nodes in Pairs 
+//Swap Nodes in Pairs
 //time:=O(n);
-function swapNode(head){
-  let sentinel=new ListNode();
-  sentinel.next=head;
+function swapNode(head) {
+  let sentinel = new ListNode();
+  sentinel.next = head;
 
-  let prev=sentinel;
-  while(prev.next && prev.next.next){
-    let first=prev.next;
-    let second=first.next;
+  let prev = sentinel;
+  while (prev.next && prev.next.next) {
+    let first = prev.next;
+    let second = first.next;
 
-    first.next=second.next;
-    second.next=first;
-    prev.next=second;
+    first.next = second.next;
+    second.next = first;
+    prev.next = second;
 
-    prev=first;
+    prev = first;
   }
-  return sentinel.next
+  return sentinel.next;
+}
+
+//Add Two Numbers
+//time:=O(n);
+//spcae:=O(1);
+function addTwoLinkedNum(l1, l2) {
+  let ans = new ListNode();
+  let temp = ans;
+  let carry = 0;
+  while (l1 || l2 || carry) {
+    let sum =
+      (l1==null ? 0 : l1.val) + (l2==null ? 0 : l2.val) + carry;
+    carry = Math.trunc(sum / 10);
+    let digit = Math.floor(sum % 10);
+
+    let newNode = new ListNode(digit);
+    ans.next = newNode;
+    ans = ans.next;
+
+    l1 = l1 && l1.next;
+    l2 = l2 && l2.next;
+  }
+
+  return temp.next;
 }
