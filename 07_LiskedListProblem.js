@@ -269,8 +269,7 @@ function addTwoLinkedNum(l1, l2) {
   let temp = ans;
   let carry = 0;
   while (l1 || l2 || carry) {
-    let sum =
-      (l1==null ? 0 : l1.val) + (l2==null ? 0 : l2.val) + carry;
+    let sum = (l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val) + carry;
     carry = Math.trunc(sum / 10);
     let digit = Math.floor(sum % 10);
 
@@ -285,27 +284,60 @@ function addTwoLinkedNum(l1, l2) {
   return temp.next;
 }
 
-//Merge Two Sorted List 
+//Merge Two Sorted List
 //Time:O(n);
 //space:O(1)
-function mergeList(l1,l2){
-  let ans=new ListNode();
-  let curr=ans;
-  while(l1 && l2){
-    if(l1.val<l2.val){
-      curr.next=l1;
-      l1=l1.next;
-    }else{
-      curr.next=l2;
-      l2=l2.next;
+function mergeList(l1, l2) {
+  let ans = new ListNode();
+  let curr = ans;
+  while (l1 && l2) {
+    if (l1.val < l2.val) {
+      curr.next = l1;
+      l1 = l1.next;
+    } else {
+      curr.next = l2;
+      l2 = l2.next;
     }
-    curr=curr.next
+    curr = curr.next;
   }
-  if(!l1){
-    curr.next=l2
-  }else if(!l2){
-    curr.next=l1
+  if (!l1) {
+    curr.next = l2;
+  } else if (!l2) {
+    curr.next = l1;
   }
-  
-  return ans.next
+
+  return ans.next;
+}
+
+//Rotate List
+//Time:= O(n);
+//spcae:=O(1);
+function rotateList(head, k) {
+  if (!head || !head.next) return head;
+  //cal length
+  let length = 0;
+  let curr = head;
+  while (curr) {
+    curr = curr.next;
+    length++;
+  }
+ //To aboid unnecessary rotations
+  k = k % length;
+
+  let first = (second = head);
+//Move first pointer k steps ahead
+  for (i = 0; i < k; i++) {
+    first = first.next;
+  }
+  //Now we reach the end of the first and then we get second pointer
+  while (first && first.next) {
+    first = first.next;
+    second = second.next;
+  }
+  //No connecting the first pointer to head 
+  first.next = head;
+  let newHead = second.next;
+  second.next = null;
+
+  return newHead;
 }
