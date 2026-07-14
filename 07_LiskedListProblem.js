@@ -261,6 +261,15 @@ function swapNode(head) {
   return sentinel.next;
 }
 
+//BY recursion Swap node in pairs 
+function swap(head){if(!head || !head.next) return head
+  let l=head;
+  let r=head.next
+  l.next=swap(r.next);
+  r.nexr=l;
+  return r;
+}
+
 //Add Two Numbers
 //time:=O(n);
 //spcae:=O(1);
