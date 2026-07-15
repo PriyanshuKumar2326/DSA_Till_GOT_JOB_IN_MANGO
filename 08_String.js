@@ -65,4 +65,31 @@ function lengthWord(string){
   return count
 }
 
-console.log(lengthWord(string));
+// console.log(lengthWord(string));
+
+
+//Find words containing character 
+//time:=O(n)
+//space:=O(1)
+// function containing(words,x){
+//   let newArr=[];
+//   for(let i=0;i<words.length;i++){
+//     if(words[i].includes(x)){
+//       newArr.psuh(i)
+//     }
+//   }
+//   return newArr;
+// }
+
+function containing(words,x){
+  let newArr=[];
+  for(let i=0;i<words.length;i++){
+    for(let j=0;i<words[i].length;j++){
+      if(words[i][j]===x){
+        newArr.push(i);
+        break;
+      }
+    }
+  }
+  return newArr;
+}
