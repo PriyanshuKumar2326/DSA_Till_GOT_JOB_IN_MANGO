@@ -93,3 +93,74 @@ function containing(words,x){
   }
   return newArr;
 }
+
+//Jewels and Stones 
+//time:=O(n)
+//space:=O(1)
+function jewelStone(jewels,stones){
+
+  let count=0;
+  for(let i=0;i<stones;i++){
+   if(jewels.includes(stones[i])){
+    count++;
+   }
+  }
+  return count;
+}
+//Time:=O(n*m);
+//space:=O(1);
+
+function jeweStone(jewels,stones){
+  let count=0;
+
+  for(let i=0;i<stones.length;i++){
+    for(let j=0;j<jewels.length;j++){
+      if(stones[i]===jewels[j]){
+        count++;
+        break;
+      }
+    }
+  }
+  return count;
+}
+
+
+//Optimize 
+//time:=O(n);
+//space:=O(1);
+function jewelSt(jewels,stones){
+  let store={};
+  let count=0;
+  for(let i=0;i<stones.length;i++){
+    if(store[stones[i]]){
+      store[stones[i]]++
+    }else {
+      store[stones[i]]=1
+    }
+  }
+
+  for(let i=0;i<jewels.length;i++){
+    if(store[jewels[i]]){
+      count+=store[jewels[i]]
+    }
+  }
+  
+  return count
+
+}
+//time:=O(n)
+//space:O(1)
+function jewelS(jewels,stones){
+  let store=new Set();
+  count=0;
+  for(let i=0;i<jewels.length;i++){
+     store.add(jewels[i])
+  }
+
+  for(let i=0;i<stones.length;i++){
+    if(store.has(stones[i])){ //O(1)
+     count++
+    }
+  }
+  return count;
+}
