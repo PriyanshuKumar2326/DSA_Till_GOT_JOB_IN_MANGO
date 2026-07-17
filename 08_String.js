@@ -52,23 +52,22 @@ let string = "A boy dream is to Be Army officer";
 //With one loop
 //time:O(n);
 //space:O(1);
-function lengthWord(string){
-  let n=string.length-1;
-  let count=0;
-  for(let i=n;i>=0;i--){
-     if(string[i]!=" "){
-     count++;
-    }else if(string[i]==" " && count>0){
+function lengthWord(string) {
+  let n = string.length - 1;
+  let count = 0;
+  for (let i = n; i >= 0; i--) {
+    if (string[i] != " ") {
+      count++;
+    } else if (string[i] == " " && count > 0) {
       break;
     }
   }
-  return count
+  return count;
 }
 
 // console.log(lengthWord(string));
 
-
-//Find words containing character 
+//Find words containing character
 //time:=O(n)
 //space:=O(1)
 // function containing(words,x){
@@ -81,11 +80,11 @@ function lengthWord(string){
 //   return newArr;
 // }
 
-function containing(words,x){
-  let newArr=[];
-  for(let i=0;i<words.length;i++){
-    for(let j=0;i<words[i].length;j++){
-      if(words[i][j]===x){
+function containing(words, x) {
+  let newArr = [];
+  for (let i = 0; i < words.length; i++) {
+    for (let j = 0; i < words[i].length; j++) {
+      if (words[i][j] === x) {
         newArr.push(i);
         break;
       }
@@ -94,28 +93,27 @@ function containing(words,x){
   return newArr;
 }
 
-//Jewels and Stones 
+//Jewels and Stones
 //time:=O(n)
 //space:=O(1)
-function jewelStone(jewels,stones){
-
-  let count=0;
-  for(let i=0;i<stones;i++){
-   if(jewels.includes(stones[i])){
-    count++;
-   }
+function jewelStone(jewels, stones) {
+  let count = 0;
+  for (let i = 0; i < stones; i++) {
+    if (jewels.includes(stones[i])) {
+      count++;
+    }
   }
   return count;
 }
 //Time:=O(n*m);
 //space:=O(1);
 
-function jeweStone(jewels,stones){
-  let count=0;
+function jeweStone(jewels, stones) {
+  let count = 0;
 
-  for(let i=0;i<stones.length;i++){
-    for(let j=0;j<jewels.length;j++){
-      if(stones[i]===jewels[j]){
+  for (let i = 0; i < stones.length; i++) {
+    for (let j = 0; j < jewels.length; j++) {
+      if (stones[i] === jewels[j]) {
         count++;
         break;
       }
@@ -124,43 +122,78 @@ function jeweStone(jewels,stones){
   return count;
 }
 
-
-//Optimize 
+//Optimize
 //time:=O(n);
 //space:=O(1);
-function jewelSt(jewels,stones){
-  let store={};
-  let count=0;
-  for(let i=0;i<stones.length;i++){
-    if(store[stones[i]]){
-      store[stones[i]]++
-    }else {
-      store[stones[i]]=1
+function jewelSt(jewels, stones) {
+  let store = {};
+  let count = 0;
+  for (let i = 0; i < stones.length; i++) {
+    if (store[stones[i]]) {
+      store[stones[i]]++;
+    } else {
+      store[stones[i]] = 1;
     }
   }
 
-  for(let i=0;i<jewels.length;i++){
-    if(store[jewels[i]]){
-      count+=store[jewels[i]]
+  for (let i = 0; i < jewels.length; i++) {
+    if (store[jewels[i]]) {
+      count += store[jewels[i]];
     }
   }
-  
-  return count
 
+  return count;
 }
 //time:=O(n)
 //space:O(1)
-function jewelS(jewels,stones){
-  let store=new Set();
-  count=0;
-  for(let i=0;i<jewels.length;i++){
-     store.add(jewels[i])
+function jewelS(jewels, stones) {
+  let store = new Set();
+  count = 0;
+  for (let i = 0; i < jewels.length; i++) {
+    store.add(jewels[i]);
   }
 
-  for(let i=0;i<stones.length;i++){
-    if(store.has(stones[i])){ //O(1)
-     count++
+  for (let i = 0; i < stones.length; i++) {
+    if (store.has(stones[i])) {
+      //O(1)
+      count++;
     }
   }
   return count;
+}
+
+//Find Most Frequent Vowel and Consonant
+//time:=O(m+1)=O(n)
+//space:=O(1) constant Space
+function maxFreqSum(string) {
+  let map = {};
+
+  for (let i = 0; i < string.length; i++) {
+    map[string[i]] = !map[string[i]] ? 1 : map[string[i]]++;
+    // if(!map[string[i]]){
+    //   map[string[i]]=1
+    // }else{
+    //   map[string[i]]++
+    // }
+  }
+
+  //find the max vowel and consonant inside the map
+
+  let maxV = 0;
+  let maxCon = 0;
+  let vowel = "aeiouAEIOU";
+
+  for (let key in map) {
+    if (vowel.includes(key)) {
+      if (map[key] > maxV) {
+        maxV = map[key];
+      }
+    } else {
+      if (map[key] > maxCon) {
+        maxCon = map[key];
+      }
+    }
+  }
+
+  return maxV + maxCon;
 }
