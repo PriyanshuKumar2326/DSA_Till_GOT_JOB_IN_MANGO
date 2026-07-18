@@ -197,3 +197,25 @@ function maxFreqSum(string) {
 
   return maxV + maxCon;
 }
+
+//Split in Banlanced Strings
+//time:=O(n);
+//space=:=O(1)
+
+function balancedString(string){
+
+  let temp=0
+  let balanced=0;
+  for(let i=0;i<string.len;i++){
+    if(string[i]=="R"){
+      temp++
+    }else {
+      temp--
+    }
+
+    if(temp==0){
+      ++balanced;  
+    }
+  }
+  return balanced
+}
