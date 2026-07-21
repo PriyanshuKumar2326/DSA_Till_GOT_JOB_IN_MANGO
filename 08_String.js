@@ -263,4 +263,27 @@ function commonPrix(strs){
     ++x
   }
   return strs[0]
+} 
+
+//Valided the anagram 
+
+function validAna(s,t){
+  if(s.length !== t.length) return false;
+  let store=new Map()
+  for(let i=0;i<s.length;i++){
+    if(!store.has(s[i])){
+      store.set(s[i],1)
+    }else {
+      store.set(s[i],store.get(s[i])+1)
+    }
+  }
+
+  for(let j=0;j<t.length;j++){
+    if(!store.has(t[j]) || store.get(t[j])===0){
+      return false
+    }
+    store.set(t[j],store.get(t[j])-1)
+  }
+
+  return true
 }
