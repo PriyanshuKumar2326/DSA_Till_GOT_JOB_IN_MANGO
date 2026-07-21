@@ -286,4 +286,28 @@ function validAna(s,t){
   }
 
   return true
+} 
+
+
+
+//Isomorphic string 
+//s="agg"; t="add" are both isomorphic 
+
+function isomorphic(s,t){
+  if(s.length !== t.length) return false;
+
+  //create two map 
+  let store1={};
+  let store2={};
+  for(let i=0;i<s.length;i++){
+    if(!store1[s[i]] && !store2[t[i]]){
+      store1[s[i]]=t[i];
+      store2[t[i]]=s[i]
+    }else if(store2[t[i]] !== s[i]){
+      return false
+    }else if(store1[s[i]] !== t[i]){
+      return false
+    }
+  }
+  return true;
 }
