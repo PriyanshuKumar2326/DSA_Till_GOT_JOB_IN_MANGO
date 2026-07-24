@@ -337,16 +337,16 @@ function groupAnagram(strs){
 function secondGA(strs){
   let map={};
 
-  for(let i=0;i<strs.length;i++){
+  for(let i=0;i<strs.length;i++){ //O(n)
     let freqArr=Array(26).fill(0);
     let s=strs[i];
-    for(let j=0;j<s.length;j++){
+    for(let j=0;j<s.length;j++){//O(m)
       let index=s[j].charCodeAt()-'a'.charCodeAt();
       ++freqArr[index]
     }
     let key="";
-    for(let k=0;k<26;k++){
-      key += String.fromCharCode(97 + k) + freqArr[k];
+    for(let k=0;k<26;k++){  //O(1)
+      key += "#" + freqArr[k];
     }
 
     if(!map[key]){
@@ -357,5 +357,7 @@ function secondGA(strs){
   
   }
   return [...Object.values(map)]
+  //time:O(n*m)
+  //space:O(n*m)
 }
 
