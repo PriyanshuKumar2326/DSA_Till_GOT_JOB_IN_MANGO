@@ -26,7 +26,7 @@ queue.push(4);
 // console.log(queue[0])
 
 
-//Implement of Stack and Queue
+//Implement of Stack using Queue
 //with two queue
 //Create stack 
 // var MyStack=function(){
@@ -75,32 +75,53 @@ queue.push(4);
 // }
 //with one Queue 
 
-var MyStack1=function(){
-  this.q=[];
-} 
+// var MyStack1=function(){
+//   this.q=[];
+// } 
 
-MyStack1.prototype.push=function(x){
-  this.q.push(x)
-}
+// MyStack1.prototype.push=function(x){
+//   this.q.push(x)
+// }
 
-MyStack1.prototype.pop1=function(){
-  let n=this.q.length;
-  for(let i=0;i<n-1;i++){
-    this.q.push(this.q.shift())
+// MyStack1.prototype.pop1=function(){
+//   let n=this.q.length;
+//   for(let i=0;i<n-1;i++){
+//     this.q.push(this.q.shift())
+//   }
+//   return this.q.shift()
+// } 
+
+// MyStack1.prototype.top1=function(){
+//   let n=this.q.length;
+//   for(let i=0;i<n-1;i++){
+//     this.q.push(this.q.shift());
+//   }
+//   let ans = this.q[0];
+//   this.q.push(this.q.shift())
+//   return ans
+// }
+
+// MyStack1.prototype.empty=function(){
+//   return this.q.length===0;
+// } 
+
+//Implement Queue using Stacks 
+
+
+
+//Valid Parentheses 
+
+function isValid(s){
+  let store=[];
+  for(let i=0;i<s.length;i++){
+    if(s[i] == "{" ||  s[i]== "(" || s[i] == "[" ){
+      store.push(s[i])
+    }else {
+      let temp=store.pop();
+      if(!temp || (temp === "[" &&  temp !== "]") || (temp === "{" && temp !== "}") || (temp === "(" && temp !== ")")){
+        return false;
+      }
+    }
   }
-  return this.q.shift()
-} 
-
-MyStack1.prototype.top1=function(){
-  let n=this.q.length;
-  for(let i=0;i<n-1;i++){
-    this.q.push(this.q.shift());
-  }
-  let ans = this.q[0];
-  this.q.push(this.q.shift())
-  return ans
-}
-
-MyStack1.prototype.empty=function(){
-  return this.q.length===0;
+  return store.length === 0;
 }
