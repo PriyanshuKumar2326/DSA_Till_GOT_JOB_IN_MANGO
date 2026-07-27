@@ -111,17 +111,38 @@ queue.push(4);
 
 //Valid Parentheses 
 
+// function isValid(s){
+//   let store=[];
+//   for(let i=0;i<s.length;i++){
+//     if(s[i] == "{" ||  s[i]== "(" || s[i] == "[" ){
+//       store.push(s[i])
+//     }else {
+//       let temp=store.pop();
+//       if(!temp || (temp === "[" &&  temp !== "]") || (temp === "{" && temp !== "}") || (temp === "(" && temp !== ")")){
+//         return false;
+//       }
+//     }
+//   }
+//   return store.length === 0;
+// } 
+
+
 function isValid(s){
-  let store=[];
+  let stack=[];
+  let map={
+    "{":"}",
+    "(":")",
+    "[":"]"
+  }
   for(let i=0;i<s.length;i++){
-    if(s[i] == "{" ||  s[i]== "(" || s[i] == "[" ){
-      store.push(s[i])
+    if(map[s[i]]){
+      stack.push(s[i]);
     }else {
-      let temp=store.pop();
-      if(!temp || (temp === "[" &&  temp !== "]") || (temp === "{" && temp !== "}") || (temp === "(" && temp !== ")")){
-        return false;
+      let top=stack.pop();
+      if(!top || s[i] !== ma[top]){
+        return false
       }
     }
   }
-  return store.length === 0;
+  return stack.length === 0;
 }
