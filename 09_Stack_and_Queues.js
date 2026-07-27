@@ -145,4 +145,30 @@ function isValid(s){
     }
   }
   return stack.length === 0;
+} 
+
+//Min Stack 
+
+let MinStack=function(){
+  this.stack=[];
+}
+
+MinStack.prototype.push=function(value){
+  if(this.stack.length === 0){
+    this.stack.push([value,value])
+  }else {
+    this.stack.push([value,Math.min(value,this.stack[this.stack.length-1][1])])
+  }
+}
+
+MinStack.prototype.pop=function(){
+   return this.stack.pop()
+}
+
+MinStack.prototype.top=function(){
+  return this.stack[this.stack.length-1][0]
+}
+
+MinStack.prototype.getMin=function(){
+  return this.stack[this.stack.length-1][1]
 }
