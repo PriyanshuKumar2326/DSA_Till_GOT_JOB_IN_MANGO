@@ -193,3 +193,20 @@ function removeOuterParentheses(s) {
   }
   return ans;
 }
+
+//without stack 
+
+function removeOuter(s){
+  let level=0;
+  let ans="";
+  for(let i=0;i<s.length;i++){
+    if(s[i]==="("){
+      level++;
+      {level>1? ans+=s[i] :0}
+    }else {
+       {level>1? ans+=s[i] :0}
+       level--
+    }
+  }
+  return ans;
+}
