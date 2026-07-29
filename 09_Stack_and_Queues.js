@@ -1,34 +1,32 @@
-//Stack & Queue 
+//Stack & Queue
 
 //Stack
-let stack=[]; // creating stack it is like arr in javaScript 
-stack.push(1) //add element 
+let stack = []; // creating stack it is like arr in javaScript
+stack.push(1); //add element
 stack.push(2);
 stack.push(3);
 // console.log(stack)
 
 stack.pop();
-// console.log(stack) 
+// console.log(stack)
 
-// console.log(stack[stack.length-1])// top element 
+// console.log(stack[stack.length-1])// top element
 
+//Queue
 
-//Queue 
-
-let queue=[];
-queue.push(1);//enqueue
+let queue = [];
+queue.push(1); //enqueue
 queue.push(2);
 queue.push(3);
-queue.push(4); 
+queue.push(4);
 //console.log(queue)
 //queue.shift(); // dequeue
-//console.log(queue) 
+//console.log(queue)
 // console.log(queue[0])
-
 
 //Implement of Stack using Queue
 //with two queue
-//Create stack 
+//Create stack
 // var MyStack=function(){
 //   this.q1=[];
 //   this.q2=[];
@@ -46,15 +44,15 @@ queue.push(4);
 // }
 
 // let ans= this.q1.shift();
-// //exchange 
+// //exchange
 // let temp=this.q1;
 // this.q1=this.q2;
 // this.q2=temp;
 
 // return ans;
-// } 
+// }
 
-// //Top 
+// //Top
 // MyStack.prototype.top=function(){
 //   let n=this.q1.length;
 //   for(let i=0;i<n-1;i++){
@@ -66,18 +64,18 @@ queue.push(4);
 //   this.q1=this.q2;
 //   this.q1=temp;
 //   return front;
-// } 
+// }
 
-// //Empty 
+// //Empty
 
 // MyStack.prototype.empty=function(){
 //   return this.q1.length===0
 // }
-//with one Queue 
+//with one Queue
 
 // var MyStack1=function(){
 //   this.q=[];
-// } 
+// }
 
 // MyStack1.prototype.push=function(x){
 //   this.q.push(x)
@@ -89,7 +87,7 @@ queue.push(4);
 //     this.q.push(this.q.shift())
 //   }
 //   return this.q.shift()
-// } 
+// }
 
 // MyStack1.prototype.top1=function(){
 //   let n=this.q.length;
@@ -103,13 +101,11 @@ queue.push(4);
 
 // MyStack1.prototype.empty=function(){
 //   return this.q.length===0;
-// } 
+// }
 
-//Implement Queue using Stacks 
+//Implement Queue using Stacks
 
-
-
-//Valid Parentheses 
+//Valid Parentheses
 
 // function isValid(s){
 //   let store=[];
@@ -124,51 +120,76 @@ queue.push(4);
 //     }
 //   }
 //   return store.length === 0;
-// } 
+// }
 
-
-function isValid(s){
-  let stack=[];
-  let map={
-    "{":"}",
-    "(":")",
-    "[":"]"
-  }
-  for(let i=0;i<s.length;i++){
-    if(map[s[i]]){
+function isValid(s) {
+  let stack = [];
+  let map = {
+    "{": "}",
+    "(": ")",
+    "[": "]",
+  };
+  for (let i = 0; i < s.length; i++) {
+    if (map[s[i]]) {
       stack.push(s[i]);
-    }else {
-      let top=stack.pop();
-      if(!top || s[i] !== ma[top]){
-        return false
+    } else {
+      let top = stack.pop();
+      if (!top || s[i] !== ma[top]) {
+        return false;
       }
     }
   }
   return stack.length === 0;
-} 
-
-//Min Stack 
-
-let MinStack=function(){
-  this.stack=[];
 }
 
-MinStack.prototype.push=function(value){
-  if(this.stack.length === 0){
-    this.stack.push([value,value])
-  }else {
-    this.stack.push([value,Math.min(value,this.stack[this.stack.length-1][1])])
+//Min Stack
+
+let MinStack = function () {
+  this.stack = [];
+};
+
+MinStack.prototype.push = function (value) {
+  if (this.stack.length === 0) {
+    this.stack.push([value, value]);
+  } else {
+    this.stack.push([
+      value,
+      Math.min(value, this.stack[this.stack.length - 1][1]),
+    ]);
   }
-}
+};
 
-MinStack.prototype.pop=function(){
-   return this.stack.pop()
-}
+MinStack.prototype.pop = function () {
+  return this.stack.pop();
+};
 
-MinStack.prototype.top=function(){
-  return this.stack[this.stack.length-1][0]
-}
+MinStack.prototype.top = function () {
+  return this.stack[this.stack.length - 1][0];
+};
 
-MinStack.prototype.getMin=function(){
-  return this.stack[this.stack.length-1][1]
+MinStack.prototype.getMin = function () {
+  return this.stack[this.stack.length - 1][1];
+};
+
+//Remove Outermost Parentheses
+
+function removeOuterParentheses(s) {
+  let stack = [];
+  let ans = "";
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "(") {
+      stack.push(s[i]);
+      let len = stack.length;
+      if (len > 1) {
+        ans += s[i];
+      }
+    } else {
+      let len = stack.length;
+      if (len > 1) {
+        ans += s[i];
+      }
+      stack.pop();
+    }
+  }
+  return ans;
 }
