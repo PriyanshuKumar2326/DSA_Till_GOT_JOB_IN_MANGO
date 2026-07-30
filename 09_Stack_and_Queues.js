@@ -223,9 +223,8 @@ function evaluate(s) {
   let store = new Set(["+", "*", "-", "/"]);
   for (let i = 0; i < s.length; i++) {
     if (!store.has(s[i])) {
-      stack.push(s[i]);
+      stack.push(Number(s[i]));
     } else {
-      let ans;
       let op = s[i];
       let num1 = stack.pop();
       let num2 = stack.pop();
