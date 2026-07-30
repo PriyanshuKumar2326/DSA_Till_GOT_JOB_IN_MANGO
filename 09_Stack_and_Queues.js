@@ -194,19 +194,56 @@ function removeOuterParentheses(s) {
   return ans;
 }
 
-//without stack 
+//without stack
 
-function removeOuter(s){
-  let level=0;
-  let ans="";
-  for(let i=0;i<s.length;i++){
-    if(s[i]==="("){
+function removeOuter(s) {
+  let level = 0;
+  let ans = "";
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "(") {
       level++;
-      {level>1? ans+=s[i] :0}
-    }else {
-       {level>1? ans+=s[i] :0}
-       level--
+      {
+        level > 1 ? (ans += s[i]) : 0;
+      }
+    } else {
+      {
+        level > 1 ? (ans += s[i]) : 0;
+      }
+      level--;
     }
   }
   return ans;
+}
+
+//Evaluate Reverse Polish Notation
+//time: O(n);
+//space:O(n)
+function evaluate(s) {
+  let stack = [];
+  let store = new Set(["+", "*", "-", "/"]);
+  for (let i = 0; i < s.length; i++) {
+    if (!store.has(s[i])) {
+      stack.push(s[i]);
+    } else {
+      let ans;
+      let op = s[i];
+      let num1 = stack.pop();
+      let num2 = stack.pop();
+      switch (op) {
+        case "+":
+          stack.push(num2 + num1);
+          break;
+        case "-":
+          stack.push(num2 - num1);
+          break;
+        case "*":
+          stack.push(num2 * num1);
+          break;
+        case "/":
+          stack.push(Math.trunc(num2 / num1));
+          break;
+      }
+    }
+  }
+  return stack.pop();
 }
