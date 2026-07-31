@@ -246,3 +246,36 @@ function evaluate(s) {
   }
   return stack.pop();
 }
+
+
+//Next Greater Element 1 
+//time:O(n);
+//space:O(n)
+function nextGreat(arr1,arr2){
+  let stack=[];
+  let map={};
+  let n=arr2.length;
+
+  stack.push(arr2[n-1]);
+  map[arr2[n-1]]=-1;
+
+  for(let i=n;i>=0;i--){
+    while(stack.length){
+      if(stack[stack.length -1] < arr2[i]){
+        stack.pop()
+      }else {
+        map[arr2[i]]=stack[stack.length-1]
+      }
+    }
+    if(stack.length === 0){
+      map[arr2[i]]=-1
+    }
+    stack.push(arr2[i]);
+  }
+  let ans=[];
+  for(let i=0;i<arr1.length;i++){
+    ans.push(map[arr1[i]])
+  }
+
+  return ans;
+}
